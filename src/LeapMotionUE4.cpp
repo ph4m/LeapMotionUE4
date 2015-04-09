@@ -11,58 +11,81 @@
 #include "Leap.h"
 #include <thread>
 //#include <boost/thread.hpp>
-#include "LeapVisualizerCore.h"
+#include "LeapMotionUE4.h"
 
 using namespace Leap;
 //using namespace std;
 
-namespace LeapVisualizer {
+namespace LeapMotionUE4 {
 
+    /*
+    */
+    //Controller controller;
     bool flagIsCapturing = false;
     Vector handPalmPosition;
 
     class SampleListener : public Listener {
       public:
-        virtual void onInit(const Controller&);
-        virtual void onConnect(const Controller&);
-        virtual void onDisconnect(const Controller&);
-        virtual void onExit(const Controller&);
-        virtual void onFrame(const Controller&);
-        virtual void onFocusGained(const Controller&);
-        virtual void onFocusLost(const Controller&);
-        virtual void onDeviceChange(const Controller&);
-        virtual void onServiceConnect(const Controller&);
-        virtual void onServiceDisconnect(const Controller&);
+        //virtual void onInit(const Controller&);
+        //virtual void onConnect(const Controller&);
+        //virtual void onDisconnect(const Controller&);
+        //virtual void onExit(const Controller&);
+        //virtual void onFrame(const Controller&);
+        //virtual void onFocusGained(const Controller&);
+        //virtual void onFocusLost(const Controller&);
+        //virtual void onDeviceChange(const Controller&);
+        //virtual void onServiceConnect(const Controller&);
+        //virtual void onServiceDisconnect(const Controller&);
+        void onInit(const Controller&);
+        void onConnect(const Controller&);
+        void onDisconnect(const Controller&);
+        void onExit(const Controller&);
+        void onFrame(const Controller&);
+        void onFocusGained(const Controller&);
+        void onFocusLost(const Controller&);
+        void onDeviceChange(const Controller&);
+        void onServiceConnect(const Controller&);
+        void onServiceDisconnect(const Controller&);
 
       private:
     };
 
-    const std::string fingerNames[] = {"Thumb", "Index", "Middle", "Ring", "Pinky"};
-    const std::string boneNames[] = {"Metacarpal", "Proximal", "Middle", "Distal"};
-    const std::string stateNames[] = {"STATE_INVALID", "STATE_START", "STATE_UPDATE", "STATE_END"};
+    //const std::string fingerNames[] = {"Thumb", "Index", "Middle", "Ring", "Pinky"};
+    //const std::string boneNames[] = {"Metacarpal", "Proximal", "Middle", "Distal"};
+    //const std::string stateNames[] = {"STATE_INVALID", "STATE_START", "STATE_UPDATE", "STATE_END"};
 
     void SampleListener::onInit(const Controller& controller) {
       std::cout << "Initialized" << std::endl;
+      /*
+      */
     }
 
     void SampleListener::onConnect(const Controller& controller) {
       std::cout << "Connected" << std::endl;
+      /*
       controller.enableGesture(Gesture::TYPE_CIRCLE);
       controller.enableGesture(Gesture::TYPE_KEY_TAP);
       controller.enableGesture(Gesture::TYPE_SCREEN_TAP);
       controller.enableGesture(Gesture::TYPE_SWIPE);
+      */
     }
 
     void SampleListener::onDisconnect(const Controller& controller) {
       // Note: not dispatched when running in a debugger.
       std::cout << "Disconnected" << std::endl;
+      /*
+      */
     }
 
     void SampleListener::onExit(const Controller& controller) {
       std::cout << "Exited" << std::endl;
+      /*
+      */
     }
 
     void SampleListener::onFrame(const Controller& controller) {
+      std::cout << "New frame!" << std::endl;
+      /*
       // Get the most recent frame and report some basic information
       const Frame frame = controller.frame();
       std::cout << "Frame id: " << frame.id()
@@ -198,17 +221,23 @@ namespace LeapVisualizer {
       if (!frame.hands().isEmpty() || !gestures.isEmpty()) {
         std::cout << std::endl;
       }
+      */
     }
 
     void SampleListener::onFocusGained(const Controller& controller) {
+      /*
       std::cout << "Focus Gained" << std::endl;
+      */
     }
 
     void SampleListener::onFocusLost(const Controller& controller) {
+      /*
       std::cout << "Focus Lost" << std::endl;
+      */
     }
 
     void SampleListener::onDeviceChange(const Controller& controller) {
+      /*
       std::cout << "Device Changed" << std::endl;
       const DeviceList devices = controller.devices();
 
@@ -216,40 +245,23 @@ namespace LeapVisualizer {
         std::cout << "id: " << devices[i].toString() << std::endl;
         std::cout << "  isStreaming: " << (devices[i].isStreaming() ? "true" : "false") << std::endl;
       }
+      */
     }
 
     void SampleListener::onServiceConnect(const Controller& controller) {
+      /*
       std::cout << "Service Connected" << std::endl;
+      */
     }
 
     void SampleListener::onServiceDisconnect(const Controller& controller) {
+      /*
       std::cout << "Service Disconnected" << std::endl;
+      */
     }
-
-    /*
-    int main(int argc, char** argv) {
-      // Create a sample listener and controller
-      SampleListener listener;
-      Controller controller;
-
-      // Have the sample listener receive events from the controller
-      controller.addListener(listener);
-
-      if (argc > 1 && strcmp(argv[1], "--bg") == 0)
-        controller.setPolicy(Leap::Controller::POLICY_BACKGROUND_FRAMES);
-
-      // Keep this process running until Enter is pressed
-      std::cout << "Press Enter to quit..." << std::endl;
-      std::cin.get();
-
-      // Remove the sample listener when done
-      controller.removeListener(listener);
-
-      return 0;
-    }
-    */
 
     float getPalmPosition(int iDim) {
+      /*
         switch(iDim) {
             case 0:
                 return handPalmPosition.x;
@@ -261,36 +273,42 @@ namespace LeapVisualizer {
                 break;
         }
         return 0.0;
+      */
     }
 
     void capture()
     {
 
+      std::cout << "Starting capture" << std::endl;
       flagIsCapturing = true;
       // Create a sample listener and controller
-      SampleListener listener;
+      //SampleListener listener;
       Controller controller;
 
       // Have the sample listener receive events from the controller
-      controller.addListener(listener);
-
-      //if (argc > 1 && strcmp(argv[1], "--bg") == 0)
-      //  controller.setPolicy(Leap::Controller::POLICY_BACKGROUND_FRAMES);
+      //controller.addListener(listener);
 
       // Keep this process running until Enter is pressed
-      std::cout << "Press Enter to quit..." << std::endl;
-      std::cin.get();
+      std::cout << "Press Enter to quit" << std::endl;
+      //std::cin.get();
+      //std::cout << "Enter pressed" << std::endl;
+      std::cout << "Actually don't!" << std::endl;
+
 
       // Remove the sample listener when done
-      controller.removeListener(listener);
+      //controller.removeListener(listener);
 
     }
 
     void start_capture()
     {
         std::cout << "Starting capture thread" << std::endl;
+        std::cout << "WITH LEAP" << std::endl;
+        std::cout << "ALMOST FULL" << std::endl;
         std::thread capture_thread(capture);
+        //capture_thread.join();
         capture_thread.detach();
+        std::cout << "DETACHED" << std::endl;
         std::cout << "Capture thread started" << std::endl;
     }
 

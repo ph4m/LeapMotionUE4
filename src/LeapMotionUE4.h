@@ -6,7 +6,8 @@
 * between Leap Motion and you, your company or other organization.             *
 \******************************************************************************/
 
-namespace LeapVisualizer {
+namespace LeapMotionUE4 {
+
     void capture();
 
     void start_capture();
